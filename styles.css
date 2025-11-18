@@ -1,0 +1,419 @@
+/* ===========================
+   VARIABLES DE TEMA
+   =========================== */
+:root {
+  /* Colores base */
+  --primary: #1e88e5;
+  --accent: #7c4dff;
+  --danger: #ef5350;
+  --muted: #6b7280;
+
+  /* Tema claro */
+  --bg-body: #f5f7fb;
+  --bg-card: #ffffff;
+  --bg-panel: #ffffff;
+  --bg-canvas: #ffffff;
+  --text-main: #111827;
+  --border-soft: #e5e7eb;
+}
+
+/* Tema oscuro SUAVE (solo cambiamos variables) */
+body.dark {
+  --bg-body: #202533;
+  --bg-card: #262b3a;
+  --bg-panel: #262b3a;
+  --bg-canvas: #1f2430;
+  --text-main: #f9fafb;
+  --border-soft: #3b4255;
+}
+
+/* ===========================
+   RESETEO BÁSICO Y LAYOUT
+   =========================== */
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', system-ui, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-body);
+  color: var(--text-main);
+  font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  transition: background-color .25s ease, color .25s ease;
+}
+
+.container {
+  display: flex;
+  gap: 18px;
+  padding: 18px;
+  align-items: flex-start;
+}
+
+.left {
+  flex: 0 0 760px;
+}
+
+.right {
+  flex: 1;
+  min-width: 400px;
+}
+
+/* ===========================
+   TARJETAS DE CONTROLES
+   =========================== */
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 30px;
+}
+
+/* Fila 1 = Opciones del sistema, Fila 2 = Config + Análisis */
+.controls-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.system-row .control-card {
+  width: 280px;
+}
+
+.main-row .control-card {
+  width: 280px;
+}
+
+@media (max-width: 1100px) {
+  .main-row {
+    flex-direction: column;
+  }
+}
+
+.control-card {
+  background: var(--bg-card);
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 0;
+  /* ya tenemos gap en .controls */
+  transition: background-color .25s ease, border-color .25s ease, color .25s ease;
+}
+
+.control-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* Inputs numéricos */
+.control-card input[type="number"] {
+  width: 100%;
+  font-size: 15px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccd9ff;
+  background: #f9fbff;
+  transition: 0.2s;
+}
+
+.control-card input[type="number"]:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 5px rgba(30, 136, 229, 0.3);
+  outline: none;
+}
+
+/* Separador suave */
+.divider {
+  height: 1px;
+  width: 100%;
+  background: #e5e7eb;
+  margin: 14px 0;
+}
+
+.radio-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* ===========================
+   BOTONES
+   =========================== */
+.btn {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.btn.primary {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(30, 136, 229, 0.18);
+}
+
+.btn.accent {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn.secondary {
+  background: #7c4dff;
+  color: #fff;
+}
+
+.btn.outline {
+  background: transparent;
+  border: 1px solid #cfe3ff;
+  color: var(--primary);
+}
+
+.btn.danger {
+  background: var(--danger);
+  color: #fff;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+  transform: translateY(0px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ===========================
+   CANVAS Y PANEL DERECHO
+   =========================== */
+.canvas-wrap {
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 18px;
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 6px 24px rgba(16, 24, 40, 0.06);
+  transition: background-color .25s ease, border-color .25s ease;
+}
+
+canvas {
+  background: var(--bg-canvas);
+  border-radius: 8px;
+  border: 1px solid var(--border-soft);
+  display: block;
+  transition: background-color .25s ease, border-color .25s ease;
+}
+
+.panel {
+  background: var(--bg-panel);
+  padding: 18px;
+  border-radius: 8px;
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 6px 24px rgba(16, 24, 40, 0.06);
+  transition: background-color .25s ease, border-color .25s ease, color .25s ease;
+}
+
+.panel h3 {
+  margin-top: 0;
+}
+
+.log {
+  height: 720px;
+  overflow: auto;
+  background: var(--bg-canvas);
+  border: 1px solid var(--border-soft);
+  padding: 12px;
+  border-radius: 8px;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-main);
+  white-space: pre-wrap;
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease;
+}
+
+/* ===========================
+   PORTADA
+   =========================== */
+.portada {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, #ffffff, #eef3ff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  padding: 20px;
+  transition: background 0.25s ease;
+}
+
+body.dark .portada {
+  background: linear-gradient(180deg, #1e1e2e, #2a2d3a);
+}
+
+.portada-content {
+  text-align: center;
+  background: #fff;
+  padding: 40px 50px;
+  border-radius: 20px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.9s ease-out;
+  max-width: 600px;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+body.dark .portada-content {
+  background: var(--bg-card);
+  color: var(--text-main);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+  width: 130px;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.course,
+.prof {
+  font-weight: 500;
+  color: #333;
+  margin: 6px 0;
+  transition: color 0.25s ease;
+}
+
+body.dark .course,
+body.dark .prof {
+  color: var(--text-main);
+}
+
+.team-title {
+  margin-top: 18px;
+  font-weight: 600;
+  transition: color 0.25s ease;
+}
+
+body.dark .team-title {
+  color: var(--text-main);
+}
+
+.team-list {
+  text-align: left;
+  max-width: 300px;
+  margin: 10px auto;
+  padding: 0;
+  list-style: disc;
+}
+
+.team-list li {
+  margin: 4px 0;
+}
+
+.enter-btn {
+  margin-top: 24px;
+  padding: 12px 20px !important;
+  font-size: 16px;
+  border-radius: 12px;
+}
+
+/* Animación portada */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===========================
+   PORTADA: BOTÓN FLOTANTE (si lo usas)
+   =========================== */
+.portada-btn {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 9000;
+  padding: 10px 16px;
+  background: white;
+  border: 2px solid #333;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  display: none;
+  /* se muestra solo desde JS si quieres */
+}
+
+.portada-btn:hover {
+  background: #f1f1f1;
+}
+
+/* IMPORTANTE: ya NO ocultamos #btnPortada del card */
+/* #btnPortada { display:none; }  <-- eliminado */
+
+/* ===========================
+   THEME TOGGLE
+   =========================== */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* ===========================
+   OSCURO: AJUSTES SUAVES EXTRA
+   =========================== */
+body.dark .btn {
+  filter: brightness(0.93);
+}
+
+body.dark .btn.primary,
+body.dark .btn.accent,
+body.dark .btn.secondary,
+body.dark .btn.danger {
+  filter: none;
+  /* que se vean bien vivos */
+}
+
+/* Botones del card "Análisis del grafo" */
+.analysis-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.analysis-actions .btn {
+  flex: 1 1 0;
+}
+
+/* Botón de limpiar: ocupa todo el ancho */
+.btn-full {
+  width: 100%;
+}
+
+/* Botones un poco menos "pill" y menos sombra */
+.btn {
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+}

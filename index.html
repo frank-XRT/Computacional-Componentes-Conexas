@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="es" class="preload">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Componentes Conexas de un Grafo</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Evitar flash sin estilos -->
+  <style>
+    html.preload,
+    body.preload {
+      opacity: 0;
+    }
+
+    html,
+    body {
+      transition: opacity .25s ease;
+    }
+  </style>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="preload">
+
+  <!-- ============================= -->
+  <!-- PORTADA (Landing Page)       -->
+  <!-- ============================= -->
+  <div id="portada" class="portada">
+    <div class="portada-content">
+
+      <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/f/fc/UPC_logo_transparente.png" alt="UPC">
+
+      <h1 class="title">Componentes Conexas de un Grafo</h1>
+      <h3 class="course">Curso: Matemática Computacional</h3>
+      <h4 class="prof">Profesor: Juan Manuel Mattos Quevedo</h4>
+
+      <h4 class="team-title">Integrantes:</h4>
+      <ul class="team-list">
+        <li>De la Cruz Huamani, Frank Félix Ángel</li>
+        <li>Jurado Alania Julife Mayve</li>
+        <li>Palomino Isacupe, Kevin Arturo</li>
+        <li>Pipa Vilcahuamán, Lucero Belén</li>
+        <li>Rojas Espinoza, Sebastián Junior</li>
+      </ul>
+
+      <button id="btnEntrar" class="btn primary enter-btn">
+        Entrar a la Aplicación
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ============================= -->
+  <!-- APLICACIÓN PRINCIPAL         -->
+  <!-- ============================= -->
+  <main class="container">
+    <section class="left">
+      <!-- BLOQUE SUPERIOR: OPCIONES / CONFIG / ANÁLISIS -->
+      <div class="controls">
+
+        <!-- Fila 1: Opciones del sistema -->
+        <div class="controls-row system-row">
+          <div class="control-card">
+            <div class="control-title">Opciones del sistema</div>
+
+            <button id="btnPortada" class="btn outline">Volver a la Portada</button>
+
+            <label class="theme-toggle">
+              <input type="checkbox" id="chkTema">
+              <span>Modo oscuro</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Fila 2: Configuración inicial + Análisis -->
+        <div class="controls-row main-row">
+          <!-- Configuración inicial -->
+          <div class="control-card">
+            <div class="control-title">Configuración inicial</div>
+
+            <label for="inputN">Número de nodos (4–12)</label>
+            <input id="inputN" type="number" min="4" max="12" placeholder="4 - 12">
+
+            <div class="divider"></div>
+
+            <label>Modo de conexión:</label>
+            <div class="radio-row">
+              <label><input type="radio" name="modo" value="manual" checked> Manual</label>
+              <label><input type="radio" name="modo" value="aleatorio"> Aleatorio</label>
+            </div>
+
+            <button id="btnGen" class="btn primary" style="margin-top:10px;">Generar nodos</button>
+          </div>
+
+          <!-- Análisis del grafo -->
+          <div class="control-card">
+            <div class="control-title">Análisis del grafo</div>
+
+            <div class="analysis-actions">
+              <button id="btnConectar" class="btn accent">Conectar y Analizar</button>
+              <button id="btnVer" class="btn secondary">Ver Grafos Conexos</button>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="analysis-actions">
+              <button id="btnLimpiar" class="btn danger">Limpiar conexiones</button>
+              <button id="btnRegresar" class="btn outline">Regresar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Canvas -->
+      <div class="canvas-wrap">
+        <canvas id="grafoCanvas" width="720" height="720"></canvas>
+      </div>
+    </section>
+
+    <aside class="right">
+      <div class="panel">
+        <h3>Proceso de identificación de Componentes Conexas</h3>
+        <div id="logArea" class="log"></div>
+      </div>
+    </aside>
+  </main>
+
+  <script src="app.js"></script>
+
+  <!-- Quitar la clase preload cuando todo haya cargado -->
+  <script>
+    window.addEventListener("load", () => {
+      document.documentElement.classList.remove("preload");
+      document.body.classList.remove("preload");
+    });
+  </script>
+
+</body>
+
+</html>
